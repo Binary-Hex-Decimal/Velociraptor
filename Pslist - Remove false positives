@@ -1,0 +1,6 @@
+//Search all EXE's within pslist removing those not calling svhost from another location than default.
+SELECT Name,Exe,Commandline,Hash.SHA256 AS SHA256, Authenticode.Trusted, Username, count() AS Count FROM source()
+WHERE NOT Commandline =~ "svchost\.exe.-k" // svchost.exe -k sxpectedly appears many times in a unique way across systems.
+AND NOT Exe =~ "(sppsvc|Discord|backgroundTaskHost|MicrosoftEdgeUpdate|(System|Windows)Apps|Adobe)" // common
+GROUP BY Exe,Commandline
+ORDER BY Count
