@@ -1,0 +1,3 @@
+//Search for unsigned EXE's.
+SELECT Name,Exe,Commandline,Hash.SHA256 AS SHA256, Authenticode.Trusted, Username, fqdn FROM source()
+WHERE Authenticode.Trusted = "untrusted"
