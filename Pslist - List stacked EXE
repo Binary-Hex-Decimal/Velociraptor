@@ -1,4 +1,4 @@
 //Search all EXE's within pslist.
-SELECT Name,Exe,Commandline,Hash.SHA256 AS SHA256, Authenticode.Trusted, Username, count() AS Count FROM source()
+SELECT Name,Exe,Commandline,Hash.SHA256 AS SHA256, Authenticode.Trusted, Username, fqdn, count() AS Count FROM source()
 GROUP BY Exe,Commandline
 ORDER BY Count
